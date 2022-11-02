@@ -110,9 +110,9 @@ function passDie(event) {
     restart.removeAttribute('class', 'hidden');
     document.getElementById('winner').innerHTML = 'PLAYER 2 WINS!!!';
   }
-  
-  
-    if (currentPlayer === 1) {
+
+
+  if (currentPlayer === 1) {
     const playerName2 = document.getElementById("player");
     playerName2.innerHTML = 'Player 2';
     const p1Total = document.getElementById("player1-total");
@@ -131,7 +131,7 @@ function passDie(event) {
   }
 }
 
-function resetPage(event){
+function resetPage(event) {
   reset();
 
   const p1Total = document.getElementById("player1-total");
@@ -151,13 +151,12 @@ function resetPage(event){
 }
 
 window.addEventListener("load", function () {
-  const form = document.getElementById("form");
-  form.addEventListener("submit", handleRoll);
+  const submitBtn = document.getElementById("roll");
+  submitBtn.addEventListener("click", handleRoll);
   const passBtn = document.getElementById("pass");
   passBtn.addEventListener("click", passDie);
   const resetBtn = document.getElementById("restart");
   resetBtn.addEventListener("click", resetPage);
 });
 
-roll(3);
 

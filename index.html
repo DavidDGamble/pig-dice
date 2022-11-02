@@ -1,31 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <link href="css/styles.css" rel="stylesheet" type="text/css">
-  <script src="js/scripts.js"></script>
-  <title>Pig Dice</title>
-</head>
-<body>
-  <h1>Pig Dice</h1>
-	<h2 id="player">Player 1</h2>
-	<img id="die" src="" alt="An image of a die.">
-	<br>
-	<form id="form">
-	<button id="roll" type="submit">Roll The Dice!</button>
-	</form>
-	<button id="pass" type="click">Pass The Dice!</button>
-	<h2>Player 1 Total Score:</h2>
-	<p id="player1-total"></p>
-	<h2>Player 1 Current Score:</h2>
-	<p id="player1-current"></p>
 
-	<h2>Player 2 Total Score:</h2>
-	<p id="player2-total"></p>
-	<h2>Player 2 Current Score:</h2>
-	<p id="player2-current"></p>
-	<div id="winner-div" class="hidden">
-		<h2 id="winner"></h2>
-		<button id="restart" type="click">Restart</button>
+<head>
+	<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
+	<link href="css/styles.css" rel="stylesheet" type="text/css">
+	<script src="js/scripts.js"></script>
+	<title>Pig Dice</title>
+</head>
+
+<body>
+	<div class="container">
+		<div class="mx-auto text-center" style="width: 400px;">
+
+			<h1 class="display-4" style="margin-bottom: 20%; font-size: 110px;">Pig Dice</h1>
+
+			<h2 id="player">Player 1</h2>
+			<img id="die" src="img/dice1.png" alt="An image of a die.">
+			<br>
+			<div class="row" style="margin-top: 20%;">
+				<div class="col-6">
+					<button class="btn btn-info" id="roll" type="click">Roll The Dice!</button>
+				</div>
+				<div class="col-6">
+					<div class="hidden" id="pass">
+						<button class="btn btn-danger" id="pass" type="click">Pass The Dice!</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row" style="margin-top: 7%">
+			<div class="col-6 text-center">
+				<h2>Player 1 Total Score:</h2>
+				<p id="player1-total"></p>
+				<h2>Player 1 Current Score:</h2>
+				<p id="player1-current"></p>
+			</div>
+			<div class="col-6 text-center">
+				<h2>Player 2 Total Score:</h2>
+				<p id="player2-total"></p>
+				<h2>Player 2 Current Score:</h2>
+				<p id="player2-current"></p>
+			</div>
+		</div>
+
+		<div id="winner-div" class="hidden">
+			<div class="mx-auto text-center" style="width: 400px;">
+				<h2 id="winner"></h2>
+				<button class="btn btn-warning" id="restart" type="click">Restart</button>
+			</div>
+		</div>
 	</div>
 </body>
+
 </html>
