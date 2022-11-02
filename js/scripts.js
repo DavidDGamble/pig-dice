@@ -1,4 +1,5 @@
-//Business Logic
+//Business Logic --------------------------------------------------------------------------
+let robot = false;
 let currentPlayer = 1;
 let firstRoll = 0;
 
@@ -45,6 +46,7 @@ function updateTotal() {
 }
 
 function reset() {
+  robot = false;
   currentPlayer = 1;
   firstRoll = 0;
   player1Score = 0;
@@ -54,7 +56,7 @@ function reset() {
 }
 
 
-//UI Logic
+//UI Logic ---------------------------------------------------------------------------------
 function handleRoll(event) {
   event.preventDefault();
 
@@ -82,12 +84,47 @@ function handleRoll(event) {
     p2Current.innerHTML = player2CurrentScore;
   }
 
-  if (currentRoll === 1 && currentPlayer === 1) {
+  if (currentRoll === 1 && currentPlayer === 1 && robot === false) {
     currentPlayer = 2;
     const playerName2 = document.getElementById("player");
     playerName2.innerHTML = 'Player 2';
     const pass = document.getElementById('pass');
     pass.setAttribute('class', 'hidden');
+  } else if (currentRoll === 1 && currentPlayer === 1 && robot) {
+
+//-----------------------------
+    document.getElementById("pass").setAttribute("class", "hidden");
+
+    const p1Total = document.getElementById("player1-total");
+    p1Total.innerHTML = player1Score;
+    const p1Current = document.getElementById("player1-current");
+    p1Current.innerHTML = player1CurrentScore;
+    if (player1Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 1 WINS!!!';
+    } 
+    currentPlayer = 2;
+    while (player2CurrentScore < 15) {
+      firstRoll++;
+      const currentRoll = roll();
+      if (currentRoll === 1) {
+        player2CurrentScore = 0;
+        break;
+      }
+      scoreKeeper(currentRoll);
+    }
+    updateTotal();
+    const p2Total = document.getElementById("player2-total");
+    p2Total.innerHTML = player2Score;
+    const p2Current = document.getElementById("player2-current");
+    p2Current.innerHTML = player2CurrentScore;
+    currentPlayer = 1;
+    if (player2Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 2 WINS!!!';
+    }
   } else if (currentRoll === 1 && currentPlayer === 2) {
     currentPlayer = 1;
     const playerName1 = document.getElementById("player");
@@ -95,38 +132,70 @@ function handleRoll(event) {
     const pass = document.getElementById('pass');
     pass.setAttribute('class', 'hidden');
   }
-
 }
 
 function passDie(event) {
   updateTotal();
-  if (player1Score >= 20) {
-    const restart = document.getElementById('winner-div');
-    restart.removeAttribute('class', 'hidden');
-    document.getElementById('winner').innerHTML = 'PLAYER 1 WINS!!!';
-  } else if (player2Score >= 20) {
-    const restart = document.getElementById('winner-div');
-    restart.removeAttribute('class', 'hidden');
-    document.getElementById('winner').innerHTML = 'PLAYER 2 WINS!!!';
-  }
+  if (!robot) {
+    if (player1Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 1 WINS!!!';
+    } else if (player2Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 2 WINS!!!';
+    }
 
 
-  if (currentPlayer === 1) {
-    const playerName2 = document.getElementById("player");
-    playerName2.innerHTML = 'Player 2';
+    if (currentPlayer === 1) {
+      const playerName2 = document.getElementById("player");
+      playerName2.innerHTML = 'Player 2';
+      const p1Total = document.getElementById("player1-total");
+      p1Total.innerHTML = player1Score;
+      const p1Current = document.getElementById("player1-current");
+      p1Current.innerHTML = player1CurrentScore;
+      currentPlayer = 2;
+    } else {
+      const playerName1 = document.getElementById("player");
+      playerName1.innerHTML = 'Player 1';
+      const p2Total = document.getElementById("player2-total");
+      p2Total.innerHTML = player2Score;
+      const p2Current = document.getElementById("player2-current");
+      p2Current.innerHTML = player2CurrentScore;
+      currentPlayer = 1;
+    }
+  } else {
     const p1Total = document.getElementById("player1-total");
     p1Total.innerHTML = player1Score;
     const p1Current = document.getElementById("player1-current");
     p1Current.innerHTML = player1CurrentScore;
+    if (player1Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 1 WINS!!!';
+    } 
     currentPlayer = 2;
-  } else {
-    const playerName1 = document.getElementById("player");
-    playerName1.innerHTML = 'Player 1';
+    while (player2CurrentScore < 15) {
+      firstRoll++;
+      const currentRoll = roll();
+      if (currentRoll === 1) {
+        player2CurrentScore = 0;
+        break;
+      }
+      scoreKeeper(currentRoll);
+    }
+    updateTotal();
     const p2Total = document.getElementById("player2-total");
     p2Total.innerHTML = player2Score;
     const p2Current = document.getElementById("player2-current");
     p2Current.innerHTML = player2CurrentScore;
     currentPlayer = 1;
+    if (player2Score >= 100) {
+      const restart = document.getElementById('winner-div');
+      restart.removeAttribute('class', 'hidden');
+      document.getElementById('winner').innerHTML = 'PLAYER 2 WINS!!!';
+    }
   }
 }
 
@@ -156,9 +225,10 @@ function resetPage(event) {
 
 function handleOnePlayer(event) {
   event.preventDefault();
+  robot = true;
 
   document.getElementById("amountOfPlayers").setAttribute("class", "hidden");
-
+  document.getElementById("roll").removeAttribute("class");
 }
 
 function handleTwoPlayer(event) {
