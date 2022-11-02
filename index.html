@@ -7,13 +7,24 @@
 </head>
 <body>
   <h1>Pig Dice</h1>
-	<h2 id="player"></h2>
-	<img id="player1" src="" alt="An image of a die.">
+	<h2 id="player">Player 1</h2>
+	<img id="die" src="" alt="An image of a die.">
 	<br>
+	<form id="form">
 	<button id="roll" type="submit">Roll The Dice!</button>
+	</form>
 	<button id="pass" type="click">Pass The Dice!</button>
-	<div class="hidden">
-		<h2></h2>
+	<h2>Player 1 Total Score:</h2>
+	<p id="player1-total"></p>
+	<h2>Player 1 Current Score:</h2>
+	<p id="player1-current"></p>
+
+	<h2>Player 2 Total Score:</h2>
+	<p id="player2-total"></p>
+	<h2>Player 2 Current Score:</h2>
+	<p id="player2-current"></p>
+	<div id="winner-div" class="hidden">
+		<h2 id="winner"></h2>
 		<button id="restart" type="click">Restart</button>
 	</div>
 </body>
