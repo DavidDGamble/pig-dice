@@ -58,6 +58,9 @@ function reset() {
 function handleRoll(event) {
   event.preventDefault();
 
+  const pass = document.getElementById('pass');
+  pass.removeAttribute('class', 'hidden');
+
   firstRoll++;
   const currentRoll = roll();
 
@@ -83,10 +86,14 @@ function handleRoll(event) {
     currentPlayer = 2;
     const playerName2 = document.getElementById("player");
     playerName2.innerHTML = 'Player 2';
+    const pass = document.getElementById('pass');
+    pass.setAttribute('class', 'hidden');
   } else if (currentRoll === 1 && currentPlayer === 2) {
     currentPlayer = 1;
     const playerName1 = document.getElementById("player");
     playerName1.innerHTML = 'Player 1';
+    const pass = document.getElementById('pass');
+    pass.setAttribute('class', 'hidden');
   }
 
 
