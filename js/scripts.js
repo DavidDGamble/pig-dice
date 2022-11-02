@@ -96,7 +96,6 @@ function handleRoll(event) {
     pass.setAttribute('class', 'hidden');
   }
 
-
 }
 
 function passDie(event) {
@@ -134,6 +133,10 @@ function passDie(event) {
 function resetPage(event) {
   reset();
 
+  document.getElementById("amountOfPlayers").removeAttribute("class");
+  document.getElementById("roll").setAttribute("class", "hidden");
+  document.getElementById("pass").setAttribute("class", "hidden");
+
   const p1Total = document.getElementById("player1-total");
   p1Total.innerHTML = player1Score;
   const p1Current = document.getElementById("player1-current");
@@ -150,13 +153,43 @@ function resetPage(event) {
 
 }
 
+
+function handleOnePlayer(event) {
+  event.preventDefault();
+
+  document.getElementById("amountOfPlayers").setAttribute("class", "hidden");
+
+}
+
+function handleTwoPlayer(event) {
+  event.preventDefault();
+
+  document.getElementById("amountOfPlayers").setAttribute("class", "hidden");
+  document.getElementById("roll").removeAttribute("class");
+}
+
+
+
 window.addEventListener("load", function () {
-  const submitBtn = document.getElementById("roll");
-  submitBtn.addEventListener("click", handleRoll);
+  const rollBtn = document.getElementById("roll");
+  rollBtn.addEventListener("click", handleRoll);
+
   const passBtn = document.getElementById("pass");
   passBtn.addEventListener("click", passDie);
+
   const resetBtn = document.getElementById("restart");
   resetBtn.addEventListener("click", resetPage);
+
+  const onePlayerBtn = document.getElementById("1player");
+  onePlayerBtn.addEventListener("click", handleOnePlayer);
+
+  const twoPlayers = document.getElementById("2player");
+  twoPlayers.addEventListener("click", handleTwoPlayer);
+
+  const playerAmount = document.getElementById("amountOfPlayers");
+  playerAmount.removeAttribute("class", "hidden");
+
+
 });
 
 

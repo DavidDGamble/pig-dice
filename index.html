@@ -11,15 +11,25 @@
 <body>
 	<div class="container">
 		<div class="mx-auto text-center" style="width: 400px;">
-
 			<h1 class="display-4" style="margin-bottom: 20%; font-size: 110px;">Pig Dice</h1>
-
-			<h2 id="player">Player 1</h2>
 			<img id="die" src="img/dice1.png" alt="An image of a die.">
+			<h2 id="player">Player 1</h2>
 			<br>
+			<div id="amountOfPlayers">
+				<div class="row" style="margin-top: 20%; margin-bottom: 20%;">
+					<div class="col-6">
+						<button class="btn btn-success btn-lg" id="1player" type="click">1 Player</button>
+					</div>
+					<div class="col-6">
+						<button class="btn btn-success btn-lg" id="2player" type="click">2 Player</button>
+					</div>
+				</div>
+			</div>
 			<div class="row" style="margin-top: 20%;">
 				<div class="col-6">
-					<button class="btn btn-info" id="roll" type="click">Roll The Dice!</button>
+					<div id="roll" class="hidden">
+						<button class="btn btn-info" id="roll" type="click">Roll The Dice!</button>
+					</div>
 				</div>
 				<div class="col-6">
 					<div class="hidden" id="pass">
@@ -42,7 +52,6 @@
 				<p id="player2-current"></p>
 			</div>
 		</div>
-
 		<div id="winner-div" class="hidden">
 			<div class="mx-auto text-center" style="width: 400px;">
 				<h2 id="winner"></h2>
